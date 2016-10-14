@@ -48,7 +48,10 @@ module RouteTranslator
   end
 
   def available_locales
-    locales = config.available_locales
+    if config.available_locales.is_a?(Proc) then
+      locales = config.available_locales.call
+    else
+      locales = config.available_locales
 
     if locales.any?
       locales.map(&:to_sym)
