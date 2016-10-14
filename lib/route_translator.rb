@@ -44,7 +44,11 @@ module RouteTranslator
   end
 
   def locale_param_key
-    config.locale_param_key
+    if config.locale_param_key.is_a?(Proc) then
+      config.locale_param_key.call
+    else
+      config.locale_param_key
+    end
   end
 
   def available_locales
