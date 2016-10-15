@@ -14,8 +14,10 @@ module RouteTranslator
         # Make sure the default locale is translated in last place to avoid
         # problems with wildcards when default locale is omitted in paths. The
         # default routes will catch all paths like wildcard if it is translated first.
-        locales.delete I18n.default_locale
-        locales.push I18n.default_locale
+
+        default_locale = RouteTranslator.default_locale || I18n.default_locale
+        locales.delete default_locale
+        locales.push default_locale
       end
 
       def host_locales_option?

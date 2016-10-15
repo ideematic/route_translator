@@ -48,9 +48,9 @@ module RouteTranslator
 
   def default_locale
     if config.default_locale.is_a?(Proc)
-	  config.default_locale.call
+	    config.default_locale.call
   	else
-	  config.default_locale
+	    config.default_locale
     end
   end
 
