@@ -12,7 +12,8 @@ module RouteTranslator
   Configuration = Struct.new(:force_locale, :hide_locale,
                              :generate_unlocalized_routes, :locale_param_key,
                              :generate_unnamed_unlocalized_routes, :available_locales,
-                             :host_locales, :disable_fallback, :locale_segment_proc)
+                             :host_locales, :disable_fallback, :locale_segment_proc,
+                             :default_locale)
 
   class << self
     private
