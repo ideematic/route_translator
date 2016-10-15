@@ -22,6 +22,7 @@ module RouteTranslator
       @config.generate_unnamed_unlocalized_routes = false
       @config.force_locale                        = false
       @config.hide_locale                         = false
+      @config.default_locale                      = nil
     end
   end
 
@@ -38,13 +39,22 @@ module RouteTranslator
     @config.available_locales                   ||= []
     @config.disable_fallback                    ||= false
     @config.locale_segment_proc                 ||= nil
+	  @config.default_locale						          ||= nil
     yield @config if block
     resolve_host_locale_config_conflicts unless @config.host_locales.empty?
     @config
   end
 
+  def default_locale
+    if config.default_locale.is_a?(Proc)
+	  config.default_locale.call
+  	else
+	  config.default_locale
+    end
+  end
+
   def locale_param_key
-    if config.locale_param_key.is_a?(Proc) then
+    if config.locale_param_key.is_a?(Proc)
       config.locale_param_key.call
     else
       config.locale_param_key
@@ -52,7 +62,7 @@ module RouteTranslator
   end
 
   def available_locales
-    if config.available_locales.is_a?(Proc) then
+    if config.available_locales.is_a?(Proc)
       locales = config.available_locales.call
     else
       locales = config.available_locales
