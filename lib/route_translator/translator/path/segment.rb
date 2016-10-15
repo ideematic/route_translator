@@ -8,7 +8,7 @@ module RouteTranslator
           def translate_string(str, locale)
             locale = locale.to_s.gsub('native_', '')
             opts = { scope: :routes, locale: locale }
-            if RouteTranslator.config.disable_fallback && locale.to_s != I18n.default_locale.to_s
+            if RouteTranslator.config.disable_fallback && locale.to_s != (RouteTranslator.default_locale || I18n.default_locale.to_s)
               opts[:fallback] = true
             else
               opts[:default] = str

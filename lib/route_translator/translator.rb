@@ -82,7 +82,7 @@ module RouteTranslator
                elsif kaller.respond_to?("#{old_name}_#{current_locale_name}_#{suffix}")
                  current_locale_name
                else
-                 I18n.default_locale.to_s.underscore
+                 RouteTranslator.default_locale || I18n.default_locale.to_s.underscore
                end
 
       "#{old_name}_#{locale}_#{suffix}"

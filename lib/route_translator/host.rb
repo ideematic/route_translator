@@ -24,7 +24,7 @@ module RouteTranslator
         result << locale.to_sym if host =~ regex_for(pattern)
       end
       locales &= I18n.available_locales
-      (locales.first || I18n.default_locale).to_sym
+      (locales.first || RouteTranslator.default_locale || I18n.default_locale).to_sym
     end
   end
 end

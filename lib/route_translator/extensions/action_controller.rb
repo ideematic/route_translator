@@ -14,7 +14,7 @@ module RouteTranslator
     def set_locale_from_url
       tmp_default_locale = RouteTranslator::Host.locale_from_host(request.host)
       if tmp_default_locale
-        current_default_locale = I18n.default_locale
+        current_default_locale = RouteTranslator.default_locale || I18n.default_locale
         I18n.default_locale    = tmp_default_locale
       end
 
